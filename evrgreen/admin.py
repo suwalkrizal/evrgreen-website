@@ -7,25 +7,25 @@ from .models import CustomerProfile, MerchantProfile, Category, Product, Order, 
 # Register your models here.
 @admin.register(CustomerProfile)
 class CustomerProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'email', 'address', 'phone_number')
+    list_display = ('user_id','first_name', 'last_name', 'email', 'address', 'phone_number')
     search_fields = ['first_name', 'last_name', 'email']
     list_per_page=5
 
 @admin.register(MerchantProfile)
 class MerchantProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'last_name', 'email', 'address', 'phone_number')
+    list_display = ('merchant_id','name', 'email', 'address', 'phone_number')
     search_fields = ['first_name', 'last_name', 'email']
     list_per_page=5
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category_id', 'name', 'parent_category')
-    search_fields = ['name']
+    list_display = ('category_id','category')
+    search_fields = ['category']
     list_per_page=5
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('product_id', 'name', 'description', 'price', 'category', 'quantity_in_stock')
-    search_fields = ['name', 'description']
+    list_display = ('product', 'description', 'price', 'category', 'quantity_in_stock')
+    search_fields = ['product', 'description']
     list_per_page=5
 
 @admin.register(Order)
@@ -50,7 +50,7 @@ class CartAdmin(admin.ModelAdmin):
 
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
-    list_display = ('cart_item_id', 'cart', 'product', 'quantity')
+    list_display = ('cart_item_id', 'cart_id', 'product', 'quantity')
     list_filter = ['cart', 'product']
     search_fields = ['cart__customer__first_name', 'cart__customer__last_name', 'product__name']
     list_per_page = 5
