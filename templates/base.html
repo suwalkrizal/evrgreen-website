@@ -19,7 +19,7 @@
       <div class="container-fluid">
          <a class="navbar-brand" href="{% url 'home' %}">
             {% load static %}
-            <img src="{% static 'pic/logo.png' %}" alt="Logo" width="70" height="70">
+            <img src="{% static 'pic/logo.png' %}" alt="Logo" width="150" height="50">
          </a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,16 +28,17 @@
             {% if request.user.is_authenticated %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: Roboto,Helvetica,sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 18px">
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">CATEGORIES</a>
+                  <a class="nav-link active" aria-current="page" href="#">CATEGORIES</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'create' %}">Share Recipe</a>
+                  <a class="nav-link active" href="#">Share Recipe</a>
+                  {% comment %} {% url 'create' %} {% endcomment %}
                </li>
             </ul>
             <form class="d-flex" id="submit">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: Roboto,Helvetica,sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 15px">
                   <li class="nav-item">
-                     <a class="nav-link" aria-current="page" href="{% url 'logout' %}">LOGOUT</a>
+                     <a class="nav-link" aria-current="page" href="#">LOGOUT</a>
                   </li>
                </ul>
                <p>{{ request.user.username }}</p>
@@ -47,16 +48,16 @@
             {% else %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: Roboto,Helvetica,sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 18px">
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
                </li>
             </ul>
             <form class="d-flex" id="submit">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: Roboto,Helvetica,sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 15px">
                   <li class="nav-item">
-                     <a class="nav-link" aria-current="page" href="{% url 'login_pg' %}">LOGIN</a>
+                     <a class="nav-link" aria-current="page" href="#">LOGIN</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" aria-current="page" href="{% url 'register' %}">REGISTER</a>
+                     <a class="nav-link" aria-current="page" href="#">REGISTER</a>
                   </li>
                </ul>
                <p>Guest</p>
