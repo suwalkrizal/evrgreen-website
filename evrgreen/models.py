@@ -1,7 +1,6 @@
 from django.db import models
 
 class CustomerProfile(models.Model):
-    customer_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -12,26 +11,20 @@ class CustomerProfile(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 class MerchantProfile(models.Model):
-    merchant_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.TextField()
     phone_number = models.CharField(max_length=15)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.name}"
 
 class Category(models.Model):
-    category_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    parent_category = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-
+    category = models.CharField(max_length=255)
     def __str__(self):
-        return self.name
+        return self.category
 
 class Product(models.Model):
-    product_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -61,7 +54,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order_item_id = models.AutoField(primary_key=True)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -79,7 +72,7 @@ class Cart(models.Model):
 
 class CartItem(models.Model):
     cart_item_id = models.AutoField(primary_key=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
@@ -110,7 +103,7 @@ class Payment(models.Model):
 
 class Review(models.Model):
     review_id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField()

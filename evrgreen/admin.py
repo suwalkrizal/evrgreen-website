@@ -7,13 +7,13 @@ from .models import CustomerProfile, MerchantProfile, Category, Product, Order, 
 # Register your models here.
 @admin.register(CustomerProfile)
 class CustomerProfileAdmin(admin.ModelAdmin):
-    list_display = ('customer_id', 'first_name', 'last_name', 'email', 'address', 'phone_number')
+    list_display = ('id', 'first_name', 'last_name', 'email', 'address', 'phone_number')
     search_fields = ['first_name', 'last_name', 'email']
     list_per_page=5
 
 @admin.register(MerchantProfile)
 class MerchantProfileAdmin(admin.ModelAdmin):
-    list_display = ('merchant_id', 'first_name', 'last_name', 'email', 'address', 'phone_number')
+    list_display = ('id', 'first_name', 'last_name', 'email', 'address', 'phone_number')
     search_fields = ['first_name', 'last_name', 'email']
     list_per_page=5
 @admin.register(Category)
